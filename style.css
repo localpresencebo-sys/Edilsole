@@ -1,0 +1,316 @@
+/* =========================================================
+   EDILSOLE — Stylesheet custom
+   Font: Space Grotesk (titoli) + Inter (corpo testo)
+   Palette: Blu istituzionale / Bianco / Giallo accento chirurgico
+   ========================================================= */
+
+:root{
+  --blu-900:#071B3F;
+  --blu-800:#0E2A5E;
+  --blu-700:#153868;
+  --blu-600:#1C4C8C;
+  --blu-100:#E7EEF9;
+  --bianco:#FFFFFF;
+  --bianco-soft:#F5F7FA;
+  --giallo:#F5B301;
+  --giallo-dark:#D99A00;
+  --testo:#0A1428;
+  --testo-muto:#4A5568;
+  --testo-chiaro:#EAF0FA;
+  --linea:#DCE3EE;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+
+body{
+  font-family:'Inter', system-ui, sans-serif;
+  color:var(--testo);
+  background:var(--bianco);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+h1,h2,h3,h4,.font-display{
+  font-family:'Space Grotesk', 'Inter', sans-serif;
+  letter-spacing:-0.02em;
+}
+
+::selection{background:var(--giallo);color:var(--blu-900);}
+
+/* Focus visibile per accessibilità da tastiera */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible{
+  outline:2px solid var(--giallo);
+  outline-offset:3px;
+}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important;}
+}
+
+/* ---------- Header ---------- */
+.site-header{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  padding:22px 0;
+  transition:background-color .4s ease, padding .4s ease, box-shadow .4s ease;
+  background:transparent;
+}
+.site-header.is-scrolled{
+  padding:14px 0;
+  background:rgba(7,27,63,0.92);
+  backdrop-filter:blur(10px);
+  box-shadow:0 8px 30px -12px rgba(7,27,63,0.5);
+}
+
+.logo-mark{
+  display:flex;align-items:center;gap:10px;
+}
+.logo-mark svg{width:34px;height:34px;flex-shrink:0;}
+.logo-word{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:700;font-size:1.35rem;letter-spacing:-0.01em;
+  color:var(--bianco);
+}
+.logo-word span{color:var(--giallo);}
+
+.nav-link{
+  position:relative;color:var(--testo-chiaro);font-weight:500;font-size:.95rem;
+  padding-bottom:4px;
+}
+.nav-link::after{
+  content:"";position:absolute;left:0;bottom:0;height:2px;width:0;
+  background:var(--giallo);transition:width .3s ease;
+}
+.nav-link:hover::after,
+.nav-link.is-active::after{width:100%;}
+
+/* ---------- Bottoni ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-weight:600;font-size:.95rem;
+  padding:15px 30px;
+  border-radius:2px;
+  transition:transform .25s ease, box-shadow .25s ease, background-color .25s ease, color .25s ease;
+  white-space:nowrap;
+}
+.btn-primary{
+  background:var(--giallo);color:var(--blu-900);
+  box-shadow:0 10px 30px -12px rgba(245,179,1,0.55);
+}
+.btn-primary:hover{background:var(--giallo-dark);transform:translateY(-2px);}
+.btn-ghost{
+  border:1.5px solid rgba(255,255,255,0.5);color:var(--bianco);
+}
+.btn-ghost:hover{border-color:var(--giallo);color:var(--giallo);}
+.btn-outline-blu{
+  border:1.5px solid var(--blu-800);color:var(--blu-800);
+}
+.btn-outline-blu:hover{background:var(--blu-800);color:var(--bianco);}
+
+/* ---------- Hero ---------- */
+.hero{
+  position:relative;min-height:100svh;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  overflow:hidden;
+  background:var(--blu-900);
+}
+.hero-video{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center 30%;
+}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(7,27,63,0.72) 0%, rgba(7,27,63,0.55) 40%, rgba(7,27,63,0.88) 100%);
+}
+.hero-grid-texture{
+  position:absolute;inset:0;opacity:.12;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,.6) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.6) 1px, transparent 1px);
+  background-size:64px 64px;
+  mask-image:linear-gradient(180deg, transparent, black 55%);
+}
+.hero-content{position:relative;z-index:2;}
+
+.hero-eyebrow-line{
+  width:46px;height:2px;background:var(--giallo);display:inline-block;
+}
+
+.hero-title{
+  font-size:clamp(2.3rem, 5.4vw, 4.6rem);
+  line-height:1.04;
+  font-weight:600;
+  color:var(--bianco);
+  max-width:16ch;
+}
+
+.hero-stats{
+  border-top:1px solid rgba(255,255,255,0.18);
+}
+.hero-stat-num{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(1.8rem,3vw,2.6rem);
+  font-weight:600;color:var(--bianco);
+}
+.hero-stat-label{
+  font-size:.82rem;color:rgba(234,240,250,0.75);
+}
+
+.scroll-cue{
+  position:absolute;right:32px;bottom:110px;z-index:2;
+  writing-mode:vertical-rl;color:rgba(255,255,255,.65);
+  font-size:.78rem;letter-spacing:.08em;display:flex;align-items:center;gap:10px;
+}
+.scroll-cue .line{width:1px;height:46px;background:rgba(255,255,255,.4);display:block;}
+
+/* ---------- Divisori diagonali (motivo "pannello") ---------- */
+.diag-down{
+  clip-path:polygon(0 0,100% 0,100% 100%,0 92%);
+}
+.diag-up{
+  clip-path:polygon(0 8%,100% 0,100% 100%,0 100%);
+}
+
+/* ---------- Sezioni ---------- */
+.section-pad{padding-top:clamp(72px,10vw,140px);padding-bottom:clamp(72px,10vw,140px);}
+
+.eyebrow-dash{
+  display:inline-flex;align-items:center;gap:10px;
+  color:var(--blu-700);font-weight:600;font-size:.85rem;
+}
+.eyebrow-dash::before{
+  content:"";width:22px;height:2px;background:var(--giallo);
+}
+
+.text-balance{text-wrap:balance;}
+
+/* ---------- Box immagine con offset (segnaposto foto reali) ---------- */
+.photo-frame{
+  position:relative;border-radius:6px;overflow:hidden;
+  background:linear-gradient(135deg,var(--blu-800),var(--blu-600));
+}
+.photo-frame img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  mix-blend-mode:normal;
+}
+.photo-frame-offset{
+  position:absolute;
+  border:6px solid var(--bianco);
+  box-shadow:0 25px 60px -20px rgba(7,27,63,0.4);
+  border-radius:4px;
+  overflow:hidden;
+  background:var(--blu-100);
+}
+.photo-placeholder{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;
+  color:rgba(255,255,255,0.75);
+  background:
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.06) 0 2px, transparent 2px 14px),
+    linear-gradient(135deg,var(--blu-800),var(--blu-600));
+  font-size:.78rem;text-align:center;padding:16px;
+}
+.photo-placeholder svg{width:26px;height:26px;opacity:.8;}
+
+/* ---------- Servizi — righe asimmetriche ---------- */
+.servizio-row + .servizio-row{border-top:1px solid var(--linea);}
+.servizio-tag{
+  font-size:.78rem;font-weight:600;color:var(--blu-700);
+  border:1px solid var(--blu-700);
+  padding:4px 10px;border-radius:2px;display:inline-block;
+}
+
+/* ---------- Video secondario ---------- */
+.video-box{
+  position:relative;border-radius:6px;overflow:hidden;
+  box-shadow:0 30px 70px -24px rgba(7,27,63,0.45);
+}
+.video-box video{width:100%;height:100%;object-fit:cover;display:block;}
+.video-box::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(0deg, rgba(7,27,63,0.35), transparent 40%);
+  pointer-events:none;
+}
+
+/* ---------- Checklist vantaggi ---------- */
+.check-item{display:flex;gap:14px;align-items:flex-start;}
+.check-icon{
+  flex-shrink:0;width:26px;height:26px;border-radius:50%;
+  background:var(--giallo);color:var(--blu-900);
+  display:flex;align-items:center;justify-content:center;
+  margin-top:2px;
+}
+
+/* ---------- CTA finale ---------- */
+.cta-band{
+  background:radial-gradient(120% 140% at 15% 15%, var(--blu-700) 0%, var(--blu-900) 60%);
+  position:relative;overflow:hidden;
+}
+.cta-band::before{
+  content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;
+  background:radial-gradient(circle, rgba(245,179,1,0.18), transparent 65%);
+}
+
+/* ---------- Form ---------- */
+.field-label{font-size:.82rem;font-weight:600;color:var(--blu-800);margin-bottom:6px;display:block;}
+.field-input{
+  width:100%;padding:13px 16px;
+  border:1.5px solid var(--linea);border-radius:2px;
+  font-size:.95rem;color:var(--testo);background:var(--bianco);
+  transition:border-color .2s ease, box-shadow .2s ease;
+}
+.field-input:focus{
+  border-color:var(--blu-700);
+  box-shadow:0 0 0 3px rgba(21,56,104,0.12);
+  outline:none;
+}
+.field-input::placeholder{color:#A9B3C4;}
+
+/* ---------- Footer ---------- */
+.footer-link{color:rgba(234,240,250,0.75);transition:color .2s ease;}
+.footer-link:hover{color:var(--giallo);}
+
+/* ---------- WhatsApp float ---------- */
+.wa-float{
+  position:fixed;right:22px;bottom:22px;z-index:60;
+  display:flex;align-items:center;gap:10px;
+  background:var(--giallo);color:var(--blu-900);
+  padding:14px 16px;border-radius:40px;
+  box-shadow:0 16px 34px -10px rgba(245,179,1,0.6);
+  font-weight:600;font-size:.9rem;
+  transform:translateY(0);
+  transition:transform .35s ease, opacity .35s ease, box-shadow .25s ease;
+}
+.wa-float:hover{box-shadow:0 20px 40px -10px rgba(245,179,1,0.75);transform:translateY(-2px);}
+.wa-float.is-hidden{transform:translateY(140%);opacity:0;pointer-events:none;}
+.wa-float svg{width:22px;height:22px;flex-shrink:0;}
+.wa-float .wa-text{max-width:0;overflow:hidden;white-space:nowrap;transition:max-width .35s ease;}
+.wa-float:hover .wa-text{max-width:160px;}
+
+/* ---------- Mobile nav ---------- */
+.mobile-nav{
+  position:fixed;inset:0;z-index:55;background:var(--blu-900);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:40px;
+  transform:translateX(100%);transition:transform .4s ease;
+}
+.mobile-nav.is-open{transform:translateX(0);}
+.mobile-nav a{color:var(--bianco);font-family:'Space Grotesk',sans-serif;font-size:1.9rem;font-weight:600;}
+
+/* ---------- Counter reveal (single orchestrated moment) ---------- */
+.reveal-up{
+  opacity:0;transform:translateY(18px);
+  transition:opacity .8s ease, transform .8s ease;
+}
+.reveal-up.is-visible{opacity:1;transform:translateY(0);}
+
+/* Larghezza massima leggibile per paragrafi */
+.prose-measure{max-width:62ch;}
+
+@media (max-width:768px){
+  .photo-frame-offset{display:none;}
+}
